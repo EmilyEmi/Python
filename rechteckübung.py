@@ -3,6 +3,22 @@ import random
 from random import randint
 
 mytutu = turtle.Turtle()
+mytutu.speed(3)
+screen = turtle.getscreen()
+screen.clear()
+screen.title("Game")
+screen.colormode(255)
+
+def colors():
+    colors = []
+    r = randint(0,255)
+    g = randint(0,255)
+    b = randint(0,255)
+    colors.append(r)
+    colors.append(g)
+    colors.append(b)
+    return colors
+
 
 #schritt1
 
@@ -18,7 +34,7 @@ def rechteck(startx,starty,laenge, hoehe):
     mytutu.right(90)
     mytutu.forward(hoehe)
     mytutu.right(90)
-#rechteck(-150,100,250,200)
+
 
 
 #Schritt2
@@ -56,10 +72,6 @@ def rechteck_schoner(abstand, laenge, hoehe,startX,startY):
             start2y = start1y
             laenge2 = laenge-laenge1-3*abstand
             hoehe2 = hoehe1
-            rechteck(start1x,start1y,laenge1,hoehe1)
-            rechteck_schoner(abstand,laenge1,hoehe1,start1x,start1y)
-            rechteck(start2x,start2y,laenge2,hoehe2)
-            rechteck_schoner(abstand,laenge2,hoehe2,start2x,start2y)
         elif laenge>2*abstand:
             laenge1 = laenge-2*abstand
             hoehe1 = randint(1,hoehe-3*abstand)
@@ -67,48 +79,6 @@ def rechteck_schoner(abstand, laenge, hoehe,startX,startY):
             start2y = start1y-hoehe1-abstand
             hoehe2 = hoehe-hoehe1-3*abstand
             laenge2 = laenge1
-            rechteck(start1x, start1y, laenge1, hoehe1)
-            rechteck_schoner(abstand, laenge1, hoehe1, start1x, start1y)
-            rechteck(start2x, start2y, laenge2, hoehe2)
-            rechteck_schoner(abstand, laenge2, hoehe2, start2x, start2y)
-rechteck_schoner(5,300,50,-100,100)
-"""""
-
-    if laenge>3*abstand and hoehe>2*abstand:
-        if 9*abstand<laenge:
-             rechteck(laenge, hoehe)
-            positionieren(abstand)
-            mytutuPosition = mytutu.pos()
-            x=mytutuPosition[0]
-            y=mytutuPosition[1]
-            print(x)
-            print(y)
-
-
-            laenge1 = randint(3*abstand,laenge-6*abstand)
-            if laenge1>3*abstand:
-                rechteck(laenge1,hoehe-2*abstand)
-
-                mytutu.right(90)
-                mytutu.penup()
-                mytutu.forward(laenge1+abstand)
-                mytutu.pendown()
-
-                laenge2 = laenge-laenge1-3*abstand
-                if laenge2>3*abstand:
-                    rechteck(laenge2,hoehe-2*abstand)
-                    mytutu.penup()
-                    mytutu.goto(mytutuPosition)
-                    mytutu.pendown()
-                    mytutu.right(90)
-
-    rechteck_schoner(abstand,laenge1,hoehe-2*abstand,x,y)
-    rechteck_schoner(abstand,laenge2, hoehe - 2 * abstand, x+laenge1+abstand, y)
-
-
-
-
-
-
-rechteck_schoner(10,300,300,0,0)
-"""""
+        rechteck_schoner(abstand, laenge1, hoehe1, start1x, start1y)
+        rechteck_schoner(abstand, laenge2, hoehe2, start2x, start2y)
+rechteck_schoner(20,400,200,-100,100)
